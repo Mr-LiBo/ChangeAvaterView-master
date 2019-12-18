@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
  **/
 public class FileUtils {
     private static final String TAG = "FileUtils";
-    public static String SDPATH = Environment.getExternalStorageDirectory() + "/formats/";
+    public static String SDPATH = Environment.getExternalStorageDirectory() + "/LiBo/uid_icon/";
 
     public static void saveBitmap(Bitmap bm, String picName) {
         Log.e("", "保存图片");

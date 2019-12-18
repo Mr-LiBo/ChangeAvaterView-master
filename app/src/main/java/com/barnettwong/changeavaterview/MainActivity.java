@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ivAvater=findViewById(R.id.iv_avater);
+        ivAvater = findViewById(R.id.iv_avater);
 
         findViewById(R.id.btn_change).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void changeAvater(){
+    private void changeAvater() {
         callBack = new PhotoCallBack() {
             @Override
             public void doSuccess(String path) {
@@ -82,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-        comfireImgSelection(getApplicationContext(), ivAvater);
+        comfireImgSelection(ivAvater);
     }
 
     // 拍照
-    public void comfireImgSelection(Context context, ImageView my_info) {
+    public void comfireImgSelection(ImageView my_info) {
         ivAvater = my_info;
         new AlertView(null, null, "取消", null, new String[]{"从手机相册选择", "拍照"}, this, AlertView.Style.ActionSheet,
                 (o, position) -> {
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
                 photoUri = Uri.fromFile(file);
                 if (Build.VERSION.SDK_INT >= 24) {
-                    photoUri = FileProvider.getUriForFile(this,"com.barnettwong.changeavaterview.fileProvider", file);
+                    photoUri = FileProvider.getUriForFile(this, "com.barnettwong.changeavaterview.fileProvider", file);
                 } else {
                     photoUri = Uri.fromFile(file);
                 }
@@ -236,11 +236,11 @@ public class MainActivity extends AppCompatActivity {
             // 获取系统时间 然后将裁剪后的图片保存至指定的文件夹
             SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
             String address = sDateFormat.format(new Date());
-            if (!FileUtils.isFileExist("")) {
-                FileUtils.createSDDir("");
-            }
+//            if (!FileUtils.isFileExist("")) {
+//                FileUtils.createSDDir("");
+//            }
 
-            Uri imageUri = Uri.parse("file:///sdcard/formats/" + address + ".JPEG");
+            Uri imageUri = Uri.parse("file:///sdcard/LiBo/uid_icon/" + address + ".JPEG");
             final Intent intent = new Intent("com.android.camera.action.CROP");
 
             // 照片URL地址
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("fileurl", FileUtils.SDPATH + address + ".JPEG");
             path = FileUtils.SDPATH + address + ".JPEG";
             startActivityForResult(intent, CUT_PHOTO_REQUEST_CODE);
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
