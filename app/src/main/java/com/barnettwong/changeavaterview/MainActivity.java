@@ -11,11 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.barnettwong.callback.PhotoCallBack;
 import com.barnettwong.util.FileUtils;
@@ -32,7 +34,7 @@ import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CircleImageView ivAvater;
+    private ImageView ivAvater;
     public PhotoCallBack callBack;
     public String path = "";
     public Uri photoUri;
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 拍照
-    public void comfireImgSelection(Context context, CircleImageView my_info) {
+    public void comfireImgSelection(Context context, ImageView my_info) {
         ivAvater = my_info;
         new AlertView(null, null, "取消", null, new String[]{"从手机相册选择", "拍照"}, this, AlertView.Style.ActionSheet,
                 (o, position) -> {
